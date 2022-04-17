@@ -1,0 +1,169 @@
+package ru.netology.domain;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class RadioTest {
+
+    @Test
+    void getCurrentStation() {
+        Radio rad = new Radio();
+
+        rad.currentStation = 4;
+
+        int expected = 4;
+        int actual = rad.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void nextStation() {
+        Radio rad = new Radio();
+        rad.setCurrentStation(5);
+
+        rad.next();
+
+        int expected = 6;
+        int actual = rad.currentStation;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void nextStationToZero() {
+        Radio rad = new Radio();
+        rad.setCurrentStation(10);
+
+        rad.next();
+
+        int expected = 0;
+        int actual = rad.currentStation;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void prevStation() {
+        Radio rad = new Radio();
+        rad.setCurrentStation(8);
+
+        rad.prev();
+
+        int expected = 7;
+        int actual = rad.currentStation;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void prevStationToNine() {
+        Radio rad = new Radio();
+        rad.setCurrentStation(0);
+
+        rad.prev();
+
+        int expected = 9;
+        int actual = rad.currentStation;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void selectStation() {
+        Radio rad = new Radio();
+        rad.stationSelect(7);
+
+        int expected = 7;
+        int actual = rad.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void selectStationMoreThanNine() {
+        Radio rad = new Radio();
+        rad.stationSelect(10);
+
+        int expected = 0;
+        int actual = rad.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void selectStationLessThanZero() {
+        Radio rad = new Radio();
+        rad.stationSelect(-1);
+
+        int expected = 0;
+        int actual = rad.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getCurrentVolume() {
+        Radio rad = new Radio();
+
+        rad.currentVolume = 3;
+
+        int expected = 3;
+        int actual = rad.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void increaseVolume() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(4);
+
+        rad.increaseVolume();
+
+        int expected = 5;
+        int actual = rad.currentVolume;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void increaseVolumeToTheMax() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(10);
+
+        rad.increaseVolume();
+
+        int expected = 10;
+        int actual = rad.currentVolume;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void decreaseVolume() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(7);
+
+        rad.decreaseVolume();
+
+        int expected = 6;
+        int actual = rad.currentVolume;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void decreaseVolumeToTheMin() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(0);
+
+        rad.decreaseVolume();
+
+        int expected = 0;
+        int actual = rad.currentVolume;
+
+        assertEquals(expected, actual);
+    }
+}
